@@ -30,8 +30,17 @@ case "$cmd" in
     echo "linked:    $DEST -> $SKILL_SRC"
     ;;
   uninstall)
-    rm -rf "$DEST_DIR"
-    echo "removed:   $DEST_DIR"
+    if [ -e "$DEST" ] || [ -L "$DEST" ]; then
+      rm -f "$DEST"
+      echo "removed:   $DEST"
+    else
+      echo "not installed: $DEST"
+    fi
+    # only drop the dir if it is now empty (preserves any sibling files the user added)
+    if [ -d "$DEST_DIR" ] && [ -z "$(ls -A "$DEST_DIR")" ]; then
+      rmdir "$DEST_DIR"
+      echo "removed:   $DEST_DIR (was empty)"
+    fi
     ;;
   push)
     msg="${2:-Update skill}"
