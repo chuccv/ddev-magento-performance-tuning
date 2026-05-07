@@ -23,7 +23,21 @@ When you ask Claude to "check code", "profile", "đếm SQL", or verify a perf r
 
 ## Installation
 
-### Option A — symlink into your Claude skills dir
+### Option A — one-liner (no git clone)
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/chuccv/ddev-magento-performance-tuning/main/install.sh | bash
+```
+
+Or pull `SKILL.md` directly:
+
+```bash
+mkdir -p ~/.claude/skills/ddev-magento-performance-tuning && \
+curl -fsSL https://raw.githubusercontent.com/chuccv/ddev-magento-performance-tuning/main/SKILL.md \
+  -o ~/.claude/skills/ddev-magento-performance-tuning/SKILL.md
+```
+
+### Option B — symlink into your Claude skills dir (clone for live edits)
 
 ```bash
 git clone git@github.com:chuccv/ddev-magento-performance-tuning.git ~/Documents/ddev-magento-performance-tuning
@@ -32,7 +46,7 @@ ln -sf ~/Documents/ddev-magento-performance-tuning/SKILL.md \
        ~/.claude/skills/ddev-magento-performance-tuning/SKILL.md
 ```
 
-### Option B — use the install script
+### Option C — clone + use skill.sh (for contributors)
 
 ```bash
 git clone git@github.com:chuccv/ddev-magento-performance-tuning.git
